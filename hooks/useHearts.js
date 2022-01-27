@@ -1,25 +1,25 @@
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 
-import FantomMunksAbi from "../contract/abis/FantomMunks.json";
+import FantomHeartsAbi from "../contract/abis/FantomHearts.json";
 
 const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
-const useMunks = (web3, account) => {
+const useHearts = (web3, account) => {
   const [contract, setContract] = useState(null);
 
   useEffect(() => {
     if (web3) {
       let c = new ethers.Contract(
         contractAddress,
-        FantomMunksAbi,
+        FantomHeartsAbi,
         web3.getSigner(account)
       );
       setContract(c);
     }
   }, [web3, account]);
 
-  const getUserMunks = async () => {
+  const getUserHearts = async () => {
     if (account) {
       const tokens = [];
       let index = 0;
@@ -35,26 +35,26 @@ const useMunks = (web3, account) => {
     }
   };
 
-  const getMunkMetadata = async (munkId) => {
-    const response = await fetch(`/api/munks/${munkId}.json`);
+  const getHeartMetadata = async (heartId) => {
+    const response = await fetch(`/api/hearts/${heartId}.json`);
     if (response.status === 200) {
       let data = await response.json();
       data = {
         ...data,
-        id: munkId,
+        id: heartId,
       };
       return data;
-    } else if (munkId > 0 && response.status === 500) {
-      return await getMunkMetadata(munkId);
+    } else if (heartId > 0 && response.status === 500) {
+      return await getHeartMetadata(heartId);
     }
     return null;
   };
 
   return {
     contract,
-    getUserMunks,
-    getMunkMetadata,
+    getUserHearts,
+    getHeartMetadata,
   };
 };
 
-export default useMunks;
+export default useHearts;
