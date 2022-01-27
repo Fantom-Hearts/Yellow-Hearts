@@ -1,5 +1,5 @@
-This is a clone from Fantom Chess (https://github.com/gabriel-aranha/FantomChess).
-Please check: https://www.fantomchess.com/
+This is a clone from Fantom Munks (https://github.com/lucasgandolfi/fantom-munks).
+Please check: https://fantom-munks.vercel.app/
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

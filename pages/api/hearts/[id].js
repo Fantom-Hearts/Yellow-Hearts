@@ -1,5 +1,5 @@
 import Cors from "cors";
-import FantomMunks from "../../../contract/abis/FantomMunks.json";
+import FantoFantomHeartsmMunks from "../../../contract/abis/FantomHearts.json";
 import { ethers } from "ethers";
 
 export default async function handler(req, res) {
@@ -21,11 +21,11 @@ export default async function handler(req, res) {
       web3
     );
 
-    // Check if munk has owner
+    // Check if heart has owner
     contract
       .ownerOf(id)
       .then(() => {
-        // Fetch the munk metadata
+        // Fetch the heart metadata
         fetch(`${process.env.METADATA_URL}/${id}.json`)
           .then((response) => response.json())
           .then((metadata) => {
@@ -37,7 +37,7 @@ export default async function handler(req, res) {
       })
       .catch(() => {
         res.status(404).json({
-          message: "Munk not found yet",
+          message: "Heart not found yet",
         });
       });
   } catch (error) {

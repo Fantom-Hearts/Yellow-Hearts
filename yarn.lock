@@ -506,21 +506,6 @@
   "resolved" "https://registry.npmjs.org/@next/react-refresh-utils/-/react-refresh-utils-11.1.2.tgz"
   "version" "11.1.2"
 
-"@next/swc-darwin-arm64@11.1.2":
-  "integrity" "sha512-hZuwOlGOwBZADA8EyDYyjx3+4JGIGjSHDHWrmpI7g5rFmQNltjlbaefAbiU5Kk7j3BUSDwt30quJRFv3nyJQ0w=="
-  "resolved" "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-11.1.2.tgz"
-  "version" "11.1.2"
-
-"@next/swc-darwin-x64@11.1.2":
-  "integrity" "sha512-PGOp0E1GisU+EJJlsmJVGE+aPYD0Uh7zqgsrpD3F/Y3766Ptfbe1lEPPWnRDl+OzSSrSrX1lkyM/Jlmh5OwNvA=="
-  "resolved" "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-11.1.2.tgz"
-  "version" "11.1.2"
-
-"@next/swc-linux-x64-gnu@11.1.2":
-  "integrity" "sha512-YcDHTJjn/8RqvyJVB6pvEKXihDcdrOwga3GfMv/QtVeLphTouY4BIcEUfrG5+26Nf37MP1ywN3RRl1TxpurAsQ=="
-  "resolved" "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-11.1.2.tgz"
-  "version" "11.1.2"
-
 "@next/swc-win32-x64-msvc@11.1.2":
   "integrity" "sha512-e/pIKVdB+tGQYa1cW3sAeHm8gzEri/HYLZHT4WZojrUxgWXqx8pk7S7Xs47uBcFTqBDRvK3EcQpPLf3XdVsDdg=="
   "resolved" "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-11.1.2.tgz"
@@ -695,15 +680,15 @@
   "resolved" "https://registry.npmjs.org/acorn-walk/-/acorn-walk-7.2.0.tgz"
   "version" "7.2.0"
 
+"acorn@^6.0.0 || ^7.0.0 || ^8.0.0", "acorn@^8.5.0":
+  "integrity" "sha512-yXbYeFy+jUuYd3/CDcg2NkIYE991XYX/bje7LmjJigUciaeO1JR4XxXgCIV1/Zc/dRuFEyw1L0pbA+qynJkW5Q=="
+  "resolved" "https://registry.npmjs.org/acorn/-/acorn-8.5.0.tgz"
+  "version" "8.5.0"
+
 "acorn@^7.0.0":
   "integrity" "sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A=="
   "resolved" "https://registry.npmjs.org/acorn/-/acorn-7.4.1.tgz"
   "version" "7.4.1"
-
-"acorn@^8.5.0":
-  "integrity" "sha512-yXbYeFy+jUuYd3/CDcg2NkIYE991XYX/bje7LmjJigUciaeO1JR4XxXgCIV1/Zc/dRuFEyw1L0pbA+qynJkW5Q=="
-  "resolved" "https://registry.npmjs.org/acorn/-/acorn-8.5.0.tgz"
-  "version" "8.5.0"
 
 "aes-js@3.0.0":
   "integrity" "sha1-4h3xCtbCBTKVvLuNq0Cwnb6ofk0="
@@ -715,7 +700,7 @@
   "resolved" "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz"
   "version" "3.5.2"
 
-"ajv@^6.10.0", "ajv@^6.12.4", "ajv@^6.12.5":
+"ajv@^6.10.0", "ajv@^6.12.4", "ajv@^6.12.5", "ajv@^6.9.1":
   "integrity" "sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g=="
   "resolved" "https://registry.npmjs.org/ajv/-/ajv-6.12.6.tgz"
   "version" "6.12.6"
@@ -1083,13 +1068,6 @@
   dependencies:
     "base64-js" "^1.0.2"
     "ieee754" "^1.1.4"
-
-"bufferutil@^4.0.1":
-  "integrity" "sha512-HTm14iMQKK2FjFLRTM5lAVcyaUzOnqbPtesFIvREgXpJHdQm8bWS+GkQgIkfaBYRHuCnea7w8UVNfwiAQhlr9A=="
-  "resolved" "https://registry.npmjs.org/bufferutil/-/bufferutil-4.0.5.tgz"
-  "version" "4.0.5"
-  dependencies:
-    "node-gyp-build" "^4.3.0"
 
 "builtin-status-codes@^3.0.0":
   "integrity" "sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug="
@@ -1688,7 +1666,7 @@
     "debug" "^3.2.7"
     "pkg-dir" "^2.0.0"
 
-"eslint-plugin-import@^2.22.1":
+"eslint-plugin-import@*", "eslint-plugin-import@^2.22.1":
   "integrity" "sha512-hNVtyhiEtZmpsabL4neEj+6M5DCLgpYyG9nzJY8lZQeQXEn5UPW1DpUdsMHMXsq98dbNm7nt1w9ZMSVpfJdi8Q=="
   "resolved" "https://registry.npmjs.org/eslint-plugin-import/-/eslint-plugin-import-2.24.2.tgz"
   "version" "2.24.2"
@@ -1776,7 +1754,7 @@
   "resolved" "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-3.0.0.tgz"
   "version" "3.0.0"
 
-"eslint@^8.0.0":
+"eslint@*", "eslint@^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0", "eslint@^3 || ^4 || ^5 || ^6 || ^7", "eslint@^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0", "eslint@^5.0.0 || ^6.0.0 || ^7.0.0", "eslint@^7.23.0", "eslint@^8.0.0", "eslint@>=5":
   "integrity" "sha512-03spzPzMAO4pElm44m60Nj08nYonPGQXmw6Ceai/S4QK82IgwWO1EXx1s9namKzVlbVu3Jf81hb+N+8+v21/HQ=="
   "resolved" "https://registry.npmjs.org/eslint/-/eslint-8.0.0.tgz"
   "version" "8.0.0"
@@ -1989,7 +1967,7 @@
   dependencies:
     "flat-cache" "^3.0.4"
 
-"file-loader@^6.2.0":
+"file-loader@*", "file-loader@^6.2.0":
   "integrity" "sha512-qo3glqyTa61Ytg4u73GultjHGjdRyig3tG6lPtyX/jOEJvHif9uB0/OCI2Kif6ctF3caQTW2G5gym21oAsI4pw=="
   "resolved" "https://registry.npmjs.org/file-loader/-/file-loader-6.2.0.tgz"
   "version" "6.2.0"
@@ -2861,7 +2839,7 @@
     "file-loader" "^6.2.0"
     "url-loader" "^4.1.0"
 
-"next@^11.1.2":
+"next@^11.1.2", "next@>=10.2.0":
   "integrity" "sha512-azEYL0L+wFjv8lstLru3bgvrzPvK0P7/bz6B/4EJ9sYkXeW8r5Bjh78D/Ol7VOg0EIPz0CXoe72hzAlSAXo9hw=="
   "resolved" "https://registry.npmjs.org/next/-/next-11.1.2.tgz"
   "version" "11.1.2"
@@ -2939,7 +2917,7 @@
   "resolved" "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.1.tgz"
   "version" "2.6.1"
 
-"node-gyp-build@^4.2.0", "node-gyp-build@^4.3.0":
+"node-gyp-build@^4.2.0":
   "integrity" "sha512-iWjXZvmboq0ja1pUGULQBexmxq8CV4xBhX7VDOTbL7ZR4FOowwY/VOtRxBN/yKxmdGoIp4j5ysNT4u3S2pDQ3Q=="
   "resolved" "https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.3.0.tgz"
   "version" "4.3.0"
@@ -3341,7 +3319,7 @@
   "resolved" "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.1.0.tgz"
   "version" "4.1.0"
 
-"postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.1.6", "postcss@^8.2.1", "postcss@^8.2.14", "postcss@^8.4.1":
+"postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.1.6", "postcss@^8.2.1", "postcss@^8.2.14", "postcss@^8.2.15", "postcss@^8.4.1":
   "integrity" "sha512-WqLs/TTzXdG+/A4ZOOK9WDZiikrRaiA+eoEb/jz2DT9KUhMNHgP7yKPO8vwi62ZCsb703Gwb7BMZwDzI54Y2Ag=="
   "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.4.1.tgz"
   "version" "8.4.1"
@@ -3523,7 +3501,7 @@
   dependencies:
     "clsx" "^1.1.1"
 
-"react@^17.0.2", "react@>=16", "react@>=16.8":
+"react@^16.8.0 || ^17.0.0", "react@^17.0.2", "react@>= 16.8.0 || 17.x.x || 18.x.x", "react@>=16", "react@>=16.8", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
@@ -4007,7 +3985,7 @@
   "resolved" "https://registry.npmjs.org/stylis-rule-sheet/-/stylis-rule-sheet-0.0.10.tgz"
   "version" "0.0.10"
 
-"stylis@3.5.4":
+"stylis@^3.5.0", "stylis@3.5.4":
   "integrity" "sha512-8/3pSmthWM7lsPBKv7NXkzn2Uc9W7NotcwGNpJaa3k7WMM1XDCA4MgT5k/8BIexd5ydZdboXtU90XH9Ec4Bv/Q=="
   "resolved" "https://registry.npmjs.org/stylis/-/stylis-3.5.4.tgz"
   "version" "3.5.4"
@@ -4238,13 +4216,6 @@
   "version" "1.5.1"
   dependencies:
     "object-assign" "^4.1.1"
-
-"utf-8-validate@^5.0.2":
-  "integrity" "sha512-vLt1O5Pp+flcArHGIyKEQq883nBt8nN8tVBcoL0qUXj2XT1n7p70yGIq2VK98I5FdZ1YHc0wk/koOnHjnXWk1Q=="
-  "resolved" "https://registry.npmjs.org/utf-8-validate/-/utf-8-validate-5.0.7.tgz"
-  "version" "5.0.7"
-  dependencies:
-    "node-gyp-build" "^4.3.0"
 
 "util-deprecate@^1.0.1", "util-deprecate@^1.0.2", "util-deprecate@~1.0.1":
   "integrity" "sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8="

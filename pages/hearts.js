@@ -2,17 +2,17 @@ import { ethers } from "ethers";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import useMunks from "../hooks/useMunks";
+import useHearts from "../hooks/useHearts";
 import useWeb3 from "../hooks/useWeb3";
 import { toast } from "react-toastify";
 import Button from "../components/Button";
 
-export default function MyMunksPage() {
+export default function HeartsPage() {
   const { active, activate, deactivate, account, web3 } = useWeb3();
-  const { contract, getUserMunks, getMunkMetadata } = useMunks(web3, account);
+  const { contract, getuserHearts, getHeartMetadata } = useHearts(web3, account);
 
-  const [userMunks, setUserMunks] = useState([]);
-  const [munkSelected, setMunkSelected] = useState(null);
+  const [userHearts, setuserHearts] = useState([]);
+  const [heartSelected, setheartSelected] = useState(null);
 
   useEffect(() => {
     if (web3) {
@@ -21,19 +21,19 @@ export default function MyMunksPage() {
   }, [web3]);
 
   useEffect(() => {
-    if (contract && userMunks.length === 0) {
-      const getMunksPromise = new Promise((resolve, reject) => {
-        getUserMunks()
-          .then((munks) => {
-            if (munks) {
+    if (contract && userHearts.length === 0) {
+      const getHeartsPromise = new Promise((resolve, reject) => {
+        getuserHearts()
+          .then((hearts) => {
+            if (hearts) {
               Promise.all(
-                munks.map((munk) =>
-                  getMunkMetadata(ethers.utils.formatUnits(munk, 0))
+                hearts.map((heart) =>
+                  getHeartMetadata(ethers.utils.formatUnits(heart, 0))
                 )
               )
                 .then((metadatas) => {
                   console.log("metadatas", metadatas);
-                  setUserMunks(metadatas);
+                  setuserHearts(metadatas);
                   resolve();
                 })
                 .catch((error) => {
@@ -48,22 +48,22 @@ export default function MyMunksPage() {
             console.log(err);
           });
       });
-      toast.promise(getMunksPromise, {
-        success: "Munks loaded",
-        pending: "Loading munks...",
-        error: "Error loading munks",
+      toast.promise(getHeartsPromise, {
+        success: "Hearts loaded",
+        pending: "Loading hearts...",
+        error: "Error loading hearts",
       });
     }
   }, [contract]);
 
-  const openMunkDetails = (munk) => {
-    setMunkSelected(munk);
+  const openHeartDetails = (heart) => {
+    setheartSelected(heart);
   };
 
   return (
     <div
       className={`px-5 sm:max-w-5xl mx-auto sm:h-screen ${
-        munkSelected != null ? "overflow-hidden" : ""
+        heartSelected != null ? "overflow-hidden" : ""
       }`}
     >
       <div className="py-3 flex sm:flex-row flex-col justify-between items-center">
@@ -71,7 +71,7 @@ export default function MyMunksPage() {
           <Image src="/assets/logo.png" width="400" height="65" />
         </Link>
 
-        <Button path="/my-munks">My munks</Button>
+        <Button path="/hearts">My Hearts</Button>
 
         <Button onClick={() => activate()}>
           {active
@@ -83,49 +83,49 @@ export default function MyMunksPage() {
       </div>
       <div className="py-5">
         <h1 className="text-xl sm:text-3xl mt-5 text-center font-extrabold text-white mb-4">
-          My Munks
+          My Hearts
         </h1>
         <ul className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-          {userMunks.map((munk) => {
-            if (!munk) return null;
+          {userHearts.map((heart) => {
+            if (!heart) return null;
             return (
               <li className="flex flex-col items-center justify-center">
-                <button type="button" onClick={() => openMunkDetails(munk)}>
+                <button type="button" onClick={() => openHeartDetails(heart)}>
                   <img
-                    src={munk.image.replace(
+                    src={heart.image.replace(
                       "ipfs://",
                       "https://cloudflare-ipfs.com/ipfs/"
                     )}
-                    alt={munk.name}
+                    alt={heart.name}
                     className="w-64 h-64 rounded-xl"
                   />
-                  <span className="font-bold py-2">{munk.name}</span>
+                  <span className="font-bold py-2">{heart.name}</span>
                 </button>
               </li>
             );
           })}
         </ul>
       </div>
-      {munkSelected != null && (
+      {heartSelected != null && (
         <div
           className="w-full h-full absolute bottom-0 top-0 left-0 right-0 bg-purple-900 bg-opacity-50 flex items-center justify-center"
-          onClick={() => setMunkSelected(null)}
+          onClick={() => setheartSelected(null)}
         >
           <div
             className="w-3/4 h-3/4 rounded-xl bg-white p-5 flex flex-row "
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={munkSelected.image.replace(
+              src={heartSelected.image.replace(
                 "ipfs://",
                 "https://cloudflare-ipfs.com/ipfs/"
               )}
-              alt={munkSelected.name}
+              alt={heartSelected.name}
               className="w-2/4 mx-auto rounded-xl"
             />
             <div className="w-2/4 p-5">
               <h2 className="font-extrabold text-xl pb-5">
-                {munkSelected.name}
+                {heartSelected.name}
               </h2>
               <table className="w-full">
                 <tr>
@@ -133,7 +133,7 @@ export default function MyMunksPage() {
                   <th className="text-left">Value</th>
                   <th className="text-left">Rarity</th>
                 </tr>
-                {munkSelected.attributes.map((attr) => {
+                {heartSelected.attributes.map((attr) => {
                   return (
                     <tr>
                       <td>{attr.trait_type}</td>
