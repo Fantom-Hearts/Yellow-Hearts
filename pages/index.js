@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { toast } from "react-toastify";
 
-import FantomHeartsAbi from "../contract/abis/FantomHearts.json";
+import FantomHeartsAbi from "../contract/abis/YellowHearts.json";
 
 import useWeb3 from "../hooks/useWeb3";
 import { ethers } from "ethers";
@@ -17,7 +17,7 @@ function Index() {
   const { active, activate, deactivate, account, web3 } = useWeb3();
 
   const [contract, setContract] = useState(null);
-  const [maxMintable, setMaxMintable] = useState(0);
+  const [maxMintCount, setMaxMintCount] = useState(0);
   const [supply, setSupply] = useState(0);
   const [isClaiming, setIsClaiming] = useState(false);
 
@@ -43,16 +43,16 @@ function Index() {
         })
         .catch((err) => {
           setSupply(0);
-          setMaxMintable(0);
+          setMaxMintCount(0);
           setContract(null);
           toast.error("Check if you are using Fantom Network", {
             theme: "colored",
           });
         });
 
-      c.maxMintable()
-        .then((maxMintable) => {
-          setMaxMintable(maxMintable);
+      c.maxMintCount()
+        .then((maxMintCount) => {
+          setMaxMintCount(maxMintCount);
         })
         .catch((err) => console.log(err));
     }
@@ -64,9 +64,9 @@ function Index() {
     setSupply(totalSupply);
 
     contract
-      .maxMintable()
-      .then((maxMintable) => {
-        setMaxMintable(maxMintable);
+      .maxMintCount()
+      .then((maxMintCount) => {
+        setMaxMintCount(maxMintCount);
       })
       .catch((err) => console.log(err));
   }
@@ -89,7 +89,7 @@ function Index() {
             setIsClaiming(false);
             loadData();
 
-            const link = `https://ftmscan.com/tx/${receipt.transactionHash}`;
+            const link = `https://testnet.ftmscan.com/tx/${receipt.transactionHash}`;
 
             resolve(link);
           })
@@ -110,7 +110,7 @@ function Index() {
 
   const changeQuantity = (operation) => {
     if (operation === "add") {
-      if (mintQuantity < maxMintable) {
+      if (mintQuantity < maxMintCount) {
         setMintQuantity(mintQuantity + 1);
       }
     } else {
@@ -138,9 +138,9 @@ function Index() {
 
       <div className="px-5 sm:max-w-5xl mx-auto sm:h-screen flex flex-col justify-between">
         <div className="py-3 flex sm:flex-row flex-col justify-between items-center">
-          <Link href="/">
+          <a href="/">
             <Image src="/assets/logo.svg" width="640" height="75" />
-          </Link>
+          </a>
 
           <Button path="/hearts">My Hearts</Button>
 
@@ -233,7 +233,7 @@ function Index() {
                 {active && (
                   <>
                     <span className="font-bold text-xl">
-                      {maxMintable - supply}
+                      {maxMintCount - supply}
                     </span>
                     <span>Hearts available </span>
                   </>

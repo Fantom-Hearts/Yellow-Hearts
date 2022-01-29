@@ -1,5 +1,5 @@
 import Cors from "cors";
-import FantoFantomHeartsmMunks from "../../../contract/abis/FantomHearts.json";
+import FantomHeartsAbi from "../../../contract/abis/YellowHearts.json";
 import { ethers } from "ethers";
 
 export default async function handler(req, res) {
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     // Loading FantomMunks abi
     const contract = new ethers.Contract(
       process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
-      FantomMunks,
+      FantomHeartsAbi,
       web3
     );
 

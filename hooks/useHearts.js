@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 
-import FantomHeartsAbi from "../contract/abis/FantomHearts.json";
+import FantomHeartsAbi from "../contract/abis/YellowHearts.json";
 
 const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
