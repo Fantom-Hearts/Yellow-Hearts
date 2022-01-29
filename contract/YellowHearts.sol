@@ -13,7 +13,7 @@ contract YellowHearts is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     using Strings for uint256;
 
     Counters.Counter private _counter;
-    
+
     address payable public payableAddress = payable(0x3e269293485c3a4A8443Dc5d89a913062db3982A);
 
     string private _defaultBaseURI = "https://gateway.pinata.cloud/ipfs/QmeyFsGpGQjunoYV14ogT86samB2krBrayP3K73JJef7Qr/";
@@ -34,7 +34,7 @@ contract YellowHearts is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     mapping(uint256 => string) private _tokenURIs;
 
-    constructor() ERC721("YellowHeartsTest2", "HEART2") {
+    constructor() ERC721("YellowHeartsTest3", "HEART3") {
         _counter.increment();
     }
     
@@ -48,11 +48,11 @@ contract YellowHearts is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         payableAddress.transfer(totalPrice);
 
         for (uint256 i = 0; i < quantity; i++) {
-            mintNFT(msg.sender, tokenId);
+            mintNFT(msg.sender, tokenId + i);
         }
     }
 
-    function mintNFT(address recipient, uint256 tokenId) public onlyOwner {
+    function mintNFT(address recipient, uint256 tokenId) public {
         _safeMint(recipient, tokenId);
         _counter.increment();
     }
@@ -88,19 +88,7 @@ contract YellowHearts is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     function tokenURI(uint256 tokenId) public view override (ERC721, ERC721URIStorage) returns (string memory) {
         require(_exists(tokenId), "YellowHearts: token doesn't exist.");
-        
-        string memory _tokenURI = _tokenURIs[tokenId];
-        string memory baseURI = _baseURI();
-
-        if (bytes(baseURI).length == 0) {
-            return _tokenURI;
-        }
-
-        if (bytes(_tokenURI).length > 0) {
-            return string(abi.encodePacked(baseURI, tokenId.toString(), ".json"));
-        }
-
-        return super.tokenURI(tokenId);
+        return string(abi.encodePacked(_baseURI(), tokenId.toString(), ".json"));
     }
 
     function _baseURI() internal view override returns (string memory) {
