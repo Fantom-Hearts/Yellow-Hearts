@@ -6,11 +6,13 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       'white': '#ffffff',
+      'black': '#1B1B1B',
       'grey': {
         100: '#f1f2f8',
       },
       'yellow': {
-        100: '#FFFAA3',
+        100: '#FFC800',
+        200: '#FFBB38',
       },
       'blue': {
         100: '#9AC4FF',

@@ -2,18 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;400;500;600;700;display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;display=swap');
 
 html,
 body {
   padding: 0;
   margin: 0;
   font-size: 18px;
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, Segoe UI,
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, Segoe UI,
     Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     sans-serif;
 }
 
 body, #__next {
-  background-color:#e4b400;
+  background-color:#ffffff;
+  color: #1B1B1B;
 }

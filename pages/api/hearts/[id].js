@@ -1,5 +1,5 @@
 import Cors from "cors";
-import FantoFantomHeartsmMunks from "../../../contract/abis/FantomHearts.json";
+import YellowHeartsAbi from "../../../contract/abis/YellowHearts.json";
 import { ethers } from "ethers";
 
 export default async function handler(req, res) {
@@ -14,10 +14,10 @@ export default async function handler(req, res) {
     const web3 = new ethers.providers.JsonRpcProvider(
       process.env.NEXT_PUBLIC_NETWORK_RPC
     );
-    // Loading FantomMunks abi
+    // Loading YellowHearts abi
     const contract = new ethers.Contract(
       process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
-      FantomMunks,
+      YellowHeartsAbi,
       web3
     );
 
