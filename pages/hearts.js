@@ -14,6 +14,8 @@ export default function HeartsPage() {
   const [userHearts, setuserHearts] = useState([]);
   const [heartSelected, setheartSelected] = useState(null);
 
+  const [alreadyCalled, setAlreadyCalled] = useState(false);
+
   useEffect(() => {
     if (web3) {
       activate();
@@ -21,7 +23,7 @@ export default function HeartsPage() {
   }, [web3]);
 
   useEffect(() => {
-    if (contract && userHearts.length === 0) {
+    if (contract && userHearts.length === 0 && !alreadyCalled) {
       const getHeartsPromise = new Promise((resolve, reject) => {
         getUserHearts()
           .then((hearts) => {
@@ -49,11 +51,15 @@ export default function HeartsPage() {
             console.log(err);
           });
       });
-      toast.promise(getHeartsPromise, {
-        success: "Hearts loaded",
-        pending: "Loading hearts...",
-        error: "Error loading hearts",
-      });
+
+      if (!alreadyCalled) {
+        toast.promise(getHeartsPromise, {
+          success: "Hearts loaded",
+          pending: "Loading hearts...",
+          error: "Error loading hearts",
+        });
+        setAlreadyCalled(true);
+      }
     }
   }, [contract]);
 
