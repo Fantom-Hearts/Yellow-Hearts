@@ -92,7 +92,7 @@ export default function HeartsPage() {
             <Link href="/hearts">
               <button className="group flex items-center mr-6 transition-all duration-500 ease-in-out hover:bg-yellow-200 rounded-2xl text-black py-3 px-6 font-bold text-base border-2 border-black leading-6">
                 <svg className="mr-2 stroke-transparent group-hover:stroke-yellow-100" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3.98389 11.6106L9.11798 18.5107C10.5955 20.4964 13.4045 20.4964 14.882 18.5107L20.0161 11.6106C21.328 9.84746 21.328 7.34218 20.0161 5.57906C18.0957 2.9981 13.6571 3.76465 12 6.54855C10.3429 3.76465 5.90428 2.9981 3.9839 5.57906C2.67204 7.34218 2.67203 9.84746 3.98389 11.6106Z" stroke="#1B1B1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M3.98389 11.6106L9.11798 18.5107C10.5955 20.4964 13.4045 20.4964 14.882 18.5107L20.0161 11.6106C21.328 9.84746 21.328 7.34218 20.0161 5.57906C18.0957 2.9981 13.6571 3.76465 12 6.54855C10.3429 3.76465 5.90428 2.9981 3.9839 5.57906C2.67204 7.34218 2.67203 9.84746 3.98389 11.6106Z" stroke="#1B1B1B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 My Hearts
               </button>
@@ -105,7 +105,7 @@ export default function HeartsPage() {
                 : <>
                   <svg className="mr-2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4.6531 17.0263L3.95839 17.3089L3.95839 17.3089L4.6531 17.0263ZM4.30609 11.3971L5.03006 11.593L4.30609 11.3971ZM19.6939 11.3971L18.9699 11.593L19.6939 11.3971ZM19.3469 17.0263L20.0416 17.3089V17.3089L19.3469 17.0263ZM14.0365 20.8418L13.9206 20.1008L14.0365 20.8418ZM9.96352 20.8418L10.0794 20.1008L9.96352 20.8418ZM8.65619 7.60213L8.50672 6.86718L8.65619 7.60213ZM15.3438 7.60213L15.4933 6.86718L15.4933 6.86718L15.3438 7.60213ZM9.21479 20.7247L9.0989 21.4657L9.21479 20.7247ZM4.74598 17.2546L5.44069 16.972L5.44069 16.972L4.74598 17.2546ZM14.7852 20.7247L14.9011 21.4657L14.7852 20.7247ZM19.254 17.2546L18.5593 16.972V16.972L19.254 17.2546ZM15.6199 7.65829L15.4705 8.39324L15.4705 8.39324L15.6199 7.65829ZM8.38009 7.65829L8.52956 8.39324L8.38009 7.65829ZM6.89397 7.43059C6.89397 7.84481 7.22976 8.18059 7.64397 8.18059C8.05819 8.18059 8.39397 7.84481 8.39397 7.43059H6.89397ZM7.64397 7.12771H6.89397H7.64397ZM16.356 7.12772H15.606H16.356ZM15.606 7.4306C15.606 7.84481 15.9418 8.1806 16.356 8.1806C16.7702 8.1806 17.106 7.84481 17.106 7.4306H15.606ZM10.8517 3.14126L10.6697 2.41368L10.6697 2.41368L10.8517 3.14126ZM13.1482 3.14126L13.3302 2.41368V2.41368L13.1482 3.14126ZM8.52956 8.39324L8.80567 8.33709L8.50672 6.86718L8.23062 6.92333L8.52956 8.39324ZM15.1943 8.33709L15.4705 8.39324L15.7694 6.92333L15.4933 6.86718L15.1943 8.33709ZM14.6693 19.9837L13.9206 20.1008L14.1523 21.5828L14.9011 21.4657L14.6693 19.9837ZM10.0794 20.1008L9.33068 19.9837L9.0989 21.4657L9.84762 21.5828L10.0794 20.1008ZM18.6522 16.7437L18.5593 16.972L19.9487 17.5373L20.0416 17.3089L18.6522 16.7437ZM5.44069 16.972L5.3478 16.7437L3.95839 17.3089L4.05128 17.5373L5.44069 16.972ZM5.34781 16.7437C4.67941 15.1008 4.56858 13.2988 5.03006 11.593L3.58212 11.2013C3.03465 13.2248 3.1667 15.363 3.95839 17.3089L5.34781 16.7437ZM18.9699 11.593C19.4314 13.2987 19.3206 15.1008 18.6522 16.7437L20.0416 17.3089C20.8333 15.363 20.9654 13.2248 20.4179 11.2012L18.9699 11.593ZM13.9206 20.1008C12.6486 20.2997 11.3514 20.2997 10.0794 20.1008L9.84762 21.5828C11.2732 21.8057 12.7268 21.8057 14.1523 21.5828L13.9206 20.1008ZM8.80567 8.33709C10.9118 7.90875 13.0882 7.90875 15.1943 8.33709L15.4933 6.86718C13.1899 6.39872 10.8101 6.39872 8.50672 6.86718L8.80567 8.33709ZM9.33068 19.9837C7.55628 19.7062 6.08366 18.5524 5.44069 16.972L4.05128 17.5373C4.90076 19.6253 6.82633 21.1102 9.0989 21.4657L9.33068 19.9837ZM14.9011 21.4657C17.1736 21.1102 19.0992 19.6253 19.9487 17.5373L18.5593 16.972C17.9163 18.5524 16.4437 19.7062 14.6693 19.9837L14.9011 21.4657ZM15.4705 8.39324C17.1912 8.7432 18.5368 9.99212 18.9699 11.593L20.4179 11.2012C19.8298 9.02766 18.0205 7.38115 15.7694 6.92333L15.4705 8.39324ZM8.23062 6.92333C5.97952 7.38115 4.17018 9.02766 3.58212 11.2013L5.03006 11.593C5.46317 9.99212 6.80883 8.7432 8.52956 8.39324L8.23062 6.92333ZM8.39397 7.43059V7.12771H6.89397V7.43059H8.39397ZM15.606 7.12772V7.4306H17.106V7.12772H15.606ZM11.0337 3.86884C11.6672 3.71039 12.3328 3.71039 12.9662 3.86884L13.3302 2.41368C12.4578 2.19544 11.5422 2.19544 10.6697 2.41368L11.0337 3.86884ZM17.106 7.12772C17.106 4.88982 15.535 2.96519 13.3302 2.41368L12.9662 3.86884C14.5399 4.2625 15.606 5.61508 15.606 7.12772H17.106ZM8.39397 7.12771C8.39397 5.61508 9.46002 4.2625 11.0337 3.86884L10.6697 2.41368C8.46497 2.96519 6.89397 4.88982 6.89397 7.12771H8.39397Z" fill="#1B1B1B" />
-                    <path d="M12 13.5L12 15.5" stroke="#1B1B1B" stroke-width="1.5" stroke-linecap="round" />
+                    <path d="M12 13.5L12 15.5" stroke="#1B1B1B" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                   Connect
                 </>
@@ -114,77 +114,92 @@ export default function HeartsPage() {
           </nav>
         </div>
       </header>
-      <div className="py-5">
-        <h1 className="text-xl sm:text-3xl mt-5 text-center font-extrabold text-white mb-4">
-          My Hearts
-        </h1>
-        <ul className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-          {userHearts.map((heart) => {
-            if (!heart) return null;
-            return (
-              <li className="flex flex-col items-center justify-center">
-                <button type="button" onClick={() => openHeartDetails(heart)}>
-                  <img
-                    src={heart.image.replace(
-                      "ipfs://",
-                      "https://cloudflare-ipfs.com/ipfs/"
-                    )}
-                    alt={heart.name}
-                    className="w-64 h-64 rounded-xl"
-                  />
-                  <span className="font-bold py-2">{heart.name}</span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      {heartSelected != null && (
-        <div
-          className="w-full h-full absolute bottom-0 top-0 left-0 right-0 bg-purple-900 bg-opacity-50 flex items-center justify-center"
-          onClick={() => setheartSelected(null)}
-        >
-          <div
-            className="w-3/4 h-3/4 rounded-xl bg-white p-5 flex flex-row "
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={heartSelected.image.replace(
-                "ipfs://",
-                "https://cloudflare-ipfs.com/ipfs/"
-              )}
-              alt={heartSelected.name}
-              className="w-2/4 mx-auto rounded-xl"
-            />
-            <div className="w-2/4 p-5">
-              <h2 className="font-extrabold text-xl pb-5">
-                {heartSelected.name}
-              </h2>
-              <table className="w-full">
-                <tr>
-                  <th className="text-left">Attribute</th>
-                  <th className="text-left">Value</th>
-                  <th className="text-left">Rarity</th>
-                </tr>
-                {heartSelected.attributes.map((attr) => {
-                  return (
+
+      {active
+        ?
+        <>
+          <div className="py-5">
+            <h1 className="text-xl sm:text-3xl mt-5 font-extrabold text-yellow-200 mb-4">
+              My Hearts
+            </h1>
+            <ul className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+              {userHearts.map((heart) => {
+                if (!heart) return null;
+                return (
+                  <li className="flex flex-col items-center justify-center">
+                    <button type="button" onClick={() => openHeartDetails(heart)}>
+                      <img
+                        src={heart.image.replace(
+                          "ipfs://",
+                          "https://gateway.pinata.cloud/ipfs/"
+                        )}
+                        alt={heart.name}
+                        className="w-64 h-64 rounded-xl"
+                      />
+                      <span className="font-bold py-2">{heart.name}</span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          {heartSelected != null && (
+            <div
+              className="w-full h-full absolute bottom-0 top-0 left-0 right-0 bg-purple-900 bg-opacity-50 flex items-center justify-center"
+              onClick={() => setheartSelected(null)}
+            >
+              <div
+                className="w-3/4 h-3/4 rounded-xl bg-white p-5 flex flex-row "
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src={heartSelected.image.replace(
+                    "ipfs://",
+                    "https://gateway.pinata.cloud/ipfs/"
+                  )}
+                  alt={heartSelected.name}
+                  className="w-2/4 mx-auto rounded-xl"
+                />
+                <div className="w-2/4 p-5">
+                  <h2 className="font-extrabold text-xl pb-5">
+                    {heartSelected.name}
+                  </h2>
+                  <table className="w-full">
                     <tr>
-                      <td>{attr.trait_type}</td>
-                      <td>{attr.value}</td>
-                      <td>Soon!</td>
+                      <th className="text-left">Attribute</th>
+                      <th className="text-left">Value</th>
+                      <th className="text-left">Rarity</th>
                     </tr>
-                  );
-                })}
-              </table>
-              <div className="flex transition-all duration-500 ease-in-out bg-purple-600 hover:bg-purple-800 hover:shadow-xl px-4 rounded-xl text-white sm:w-auto w-full transform hover:scale-105 mt-3 text-center">
-                <a href="#" className="py-3 w-full h-full">
-                  PaintSwap
-                </a>
+                    {heartSelected.attributes.map((attr) => {
+                      return (
+                        <tr>
+                          <td>{attr.trait_type}</td>
+                          <td>{attr.value}</td>
+                          <td>Soon!</td>
+                        </tr>
+                      );
+                    })}
+                  </table>
+                  <div className="flex transition-all duration-500 ease-in-out bg-purple-600 hover:bg-purple-800 hover:shadow-xl px-4 rounded-xl text-black sm:w-auto w-full transform hover:scale-105 mt-3 text-center">
+                    <a href="#" className="py-3 w-full h-full">
+                      PaintSwap
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          )}
+        </>
+        : <>
+          <h1 className="text-xl sm:text-3xl mt-8 text-center font-extrabold text-black mb-4">
+            Connect your wallet to see your hearts
+          </h1>
+        </>
+      }
+
+
+
+
     </div>
   );
 }
