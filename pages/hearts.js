@@ -9,7 +9,7 @@ import Button from "../components/Button";
 
 export default function HeartsPage() {
   const { active, activate, deactivate, account, web3 } = useWeb3();
-  const { contract, getuserHearts, getHeartMetadata } = useHearts(web3, account);
+  const { contract, getUserHearts, getHeartMetadata } = useHearts(web3, account);
 
   const [userHearts, setuserHearts] = useState([]);
   const [heartSelected, setheartSelected] = useState(null);
@@ -23,9 +23,10 @@ export default function HeartsPage() {
   useEffect(() => {
     if (contract && userHearts.length === 0) {
       const getHeartsPromise = new Promise((resolve, reject) => {
-        getuserHearts()
+        getUserHearts()
           .then((hearts) => {
             if (hearts) {
+              console.log('hearts', hearts)
               Promise.all(
                 hearts.map((heart) =>
                   getHeartMetadata(ethers.utils.formatUnits(heart, 0))
@@ -119,7 +120,7 @@ export default function HeartsPage() {
         ?
         <>
           <div className="py-5">
-            <h1 className="text-xl sm:text-3xl mt-5 font-extrabold text-yellow-200 mb-4">
+            <h1 className="text-xl sm:text-3xl mt-8 font-extrabold text-yellow-200 mb-6">
               My Hearts
             </h1>
             <ul className="grid grid-cols-1 sm:grid-cols-4 gap-4">
@@ -134,7 +135,7 @@ export default function HeartsPage() {
                           "https://gateway.pinata.cloud/ipfs/"
                         )}
                         alt={heart.name}
-                        className="w-64 h-64 rounded-xl"
+                        className="w-60 h-60 rounded-xl mb-6"
                       />
                       <span className="font-bold py-2">{heart.name}</span>
                     </button>
@@ -145,11 +146,11 @@ export default function HeartsPage() {
           </div>
           {heartSelected != null && (
             <div
-              className="w-full h-full absolute bottom-0 top-0 left-0 right-0 bg-purple-900 bg-opacity-50 flex items-center justify-center"
+              className="bg-semitransparent w-full h-screen absolute top-0 left-0 right-0 flex items-center justify-center"
               onClick={() => setheartSelected(null)}
             >
               <div
-                className="w-3/4 h-3/4 rounded-xl bg-white p-5 flex flex-row "
+                className="w-3/4 h-3/4 rounded-xl bg-white shadow-2xl p-5 flex flex-row "
                 onClick={(e) => e.stopPropagation()}
               >
                 <img
@@ -158,7 +159,7 @@ export default function HeartsPage() {
                     "https://gateway.pinata.cloud/ipfs/"
                   )}
                   alt={heartSelected.name}
-                  className="w-2/4 mx-auto rounded-xl"
+                  className="w-96 h-96 mx-auto rounded-xl"
                 />
                 <div className="w-2/4 p-5">
                   <h2 className="font-extrabold text-xl pb-5">
@@ -180,14 +181,10 @@ export default function HeartsPage() {
                       );
                     })}
                   </table>
-                  <div className="flex transition-all duration-500 ease-in-out bg-purple-600 hover:bg-purple-800 hover:shadow-xl px-4 rounded-xl text-black sm:w-auto w-full transform hover:scale-105 mt-3 text-center">
-                    <a href="#" className="py-3 w-full h-full">
-                      PaintSwap
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
+
           )}
         </>
         : <>

@@ -7,6 +7,7 @@ module.exports = {
       transparent: 'transparent',
       'white': '#ffffff',
       'black': '#1B1B1B',
+      'semitransparent': 'rgba(255, 255, 255, 0.5)',
       'grey': {
         100: '#f1f2f8',
       },

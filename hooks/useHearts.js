@@ -37,7 +37,7 @@ const useHearts = (web3, account) => {
   };
 
   const getHeartMetadata = async (heartId) => {
-    const response = await fetch(`../api/hearts/${heartId}.json`);
+    const response = await fetch(`/api/hearts/${heartId}.json`);
     if (response.status === 200) {
       let data = await response.json();
       data = {
