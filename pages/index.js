@@ -75,7 +75,7 @@ function Index() {
           setMintPrice(getMintPrice(isWhitelisted));
         })
         .catch((err) => console.log(err));
-      }
+    }
   }, [active, web3]);
 
   function getMintPrice(isWhitelisted) {
@@ -129,6 +129,15 @@ function Index() {
             })
             .catch((err) => {
               console.log("error", err);
+              toast.error(err.data.message, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                theme: "colored",
+              });
             });
         });
 
@@ -140,7 +149,7 @@ function Index() {
           error: "Something went wrong... Try again!",
         });
       } else {
-        
+        console.log('deu erro')
       }
     }
 
