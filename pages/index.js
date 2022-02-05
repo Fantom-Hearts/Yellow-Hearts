@@ -9,6 +9,7 @@ import YellowHeartsAbi from "../contract/abis/YellowHearts.json";
 import useWeb3 from "../hooks/useWeb3";
 import { ethers } from "ethers";
 import Button from "../components/Button";
+import { isAddress } from "ethers/lib/utils";
 
 const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 const MINT_PRICE = Number(process.env.NEXT_PUBLIC_MINT_PRICE);
@@ -22,6 +23,8 @@ function Index() {
   const [isClaiming, setIsClaiming] = useState(false);
 
   const [mintQuantity, setMintQuantity] = useState(0);
+
+  const [isWhitelisted, setIsWhiteListed] = useState(false);
 
   useEffect(() => {
     activate();
@@ -74,43 +77,57 @@ function Index() {
         setMaxMintCount(maxMintCount);
       })
       .catch((err) => console.log(err));
+
+    contract
+      .isWhitelisted()
+      .then((isWhitelisted) => {
+        setIsWhiteListed(isWhitelisted);
+      })
+      .catch((err) => console.log(err));
   }
 
-  function claim() {
+  async function claim() {
     if (account) {
-      setIsClaiming(true);
-      let _price = ethers.utils.parseUnits(
-        String(MINT_PRICE * mintQuantity),
-        18
-      );
+      if (await contract.isWhitelisted(account)) {
+        console.log('ta na whitelist', contract.isWhitelisted)
+        setIsClaiming(true);
+        const MINT_PRICE = Number(process.env.NEXT_PUBLIC_MINT_PRICE) - 1;
+        let _price = ethers.utils.parseUnits(
+          String(MINT_PRICE * mintQuantity),
+          18
+        );
 
-      const claimPromise = new Promise((resolve, reject) => {
-        contract
-          .claim(mintQuantity, {
-            value: _price,
-          })
-          .then((receipt) => {
-            console.log(receipt);
-            setIsClaiming(false);
-            loadData();
+        const claimPromise = new Promise((resolve, reject) => {
+          contract
+            .claim(mintQuantity, {
+              value: _price,
+            })
+            .then((receipt) => {
+              console.log(receipt);
+              setIsClaiming(false);
+              loadData();
 
-            const link = `https://ftmscan.com/tx/${receipt.transactionHash}`;
+              const link = `https://ftmscan.com/tx/${receipt.transactionHash}`;
 
-            resolve(link);
-          })
-          .catch((err) => {
-            console.log("error", err);
-          });
-      });
+              resolve(link);
+            })
+            .catch((err) => {
+              console.log("error", err);
+            });
+        });
 
-      toast.promise(claimPromise, {
-        pending: "Claiming...",
-        success: {
-          render: (link) => `Claimed!`,
-        },
-        error: "Something went wrong... Try again!",
-      });
+        toast.promise(claimPromise, {
+          pending: "Claiming...",
+          success: {
+            render: (link) => `Claimed!`,
+          },
+          error: "Something went wrong... Try again!",
+        });
+      } else {
+        console.log('não ta na whitelist')
+      }
     }
+
   }
 
   const changeQuantity = (operation) => {
@@ -227,6 +244,8 @@ function Index() {
                     disabled={mintQuantity === 0}
                     onClick={claim}
                   >
+                    {console.log('isWhitelisted', isWhitelisted)}
+                    {isWhitelisted ? 'Pode minta' : 'Não pode minta'}
                     {isClaiming
                       ? "Claiming..."
                       : `Claim (${mintQuantity * MINT_PRICE} FTM)`}

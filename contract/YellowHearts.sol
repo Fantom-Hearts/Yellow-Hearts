@@ -38,34 +38,41 @@ contract YellowHearts is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     uint256 private _publicSaleStart = 1644894000;
 
-    constructor() ERC721("YellowHeartsTest4", "HEART4") {
+    constructor() ERC721("YellowHearts", "HEART") {
         _counter.increment();
     }
     
-    function claim(uint256 quantity) public payable {
-        uint256 totalPrice;
-        
+    function claim(uint256 quantity) external payable {
         if (isWhitelisted(msg.sender) && _publicSaleStart > block.timestamp) {
             require(_whitelistSaleStart <= block.timestamp, "Whitelist sale not started!");
             require(_whitelistSaleEnd >= block.timestamp, "Whitelist sale ended!");
-            
-            totalPrice = whitelistedMintPrice * quantity;
+            require(_whitelistRemaining[msg.sender] > 0, "You minted all whitelisted NFTs. Come back on public sale.");
+            require(_whitelistRemaining[msg.sender] >= quantity, string(abi.encodePacked("You can mint just ", _whitelistRemaining[msg.sender].toString(), " more whitelisted NFTs.")));
+            uint256 totalPrice = whitelistedMintPrice * quantity;
+            uint256 tokenId = _counter.current();
+
+            require(msg.value >= totalPrice, "Invalid amount!");
+            require((tokenId + quantity - 1) < maxMintCount, "Cannot claim this much. Set a lower quantity.");
+
+            payableAddress.transfer(totalPrice);
+
+            for (uint256 i = 0; i < quantity; i++) {
+                mintNFT(msg.sender, tokenId + i);
+                _whitelistRemaining[msg.sender] -= 1;
+            }
         } else {
-            totalPrice = mintPrice * quantity;
-        }
+            require(_publicSaleStart <= block.timestamp, "Public sale not started!");
+            uint256 totalPrice = mintPrice * quantity;
+            uint256 tokenId = _counter.current();
 
-        uint256 tokenId = _counter.current();
+            require(msg.value >= totalPrice, "Invalid amount!");
+            require((tokenId + quantity - 1) < maxMintCount, "Cannot claim this much. Set a lower quantity.");
+            
+            payableAddress.transfer(totalPrice);
 
-        // Conferir preço
-        require(msg.value >= totalPrice, "Invalid amount!");
-        
-        // Conferir quantidade de token disponível
-        require((tokenId + quantity - 1) < maxMintCount, "Cannot claim this much. Set a lower quantity.");
-        
-        payableAddress.transfer(totalPrice);
-
-        for (uint256 i = 0; i < quantity; i++) {
-            mintNFT(msg.sender, tokenId + i);
+            for (uint256 i = 0; i < quantity; i++) {
+                mintNFT(msg.sender, tokenId + i);
+            }
         }
     }
 
@@ -101,6 +108,14 @@ contract YellowHearts is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     function isWhitelisted(address recipient) public view returns (bool) {
         return _whitelistRemaining[recipient] != 0;
+    }
+
+    function amountMinted() public view returns (uint256) {
+        return _counter.current() - 1;
+    }
+
+    function currentBlockTimestamp() external view returns (uint) {
+        return block.timestamp;
     }
 
     function changeBaseURI(string memory newURI) public onlyOwner {
