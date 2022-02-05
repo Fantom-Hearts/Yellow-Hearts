@@ -105,52 +105,48 @@ function Index() {
 
   async function claim() {
     if (account) {
-      if (await contract.isWhitelisted(account)) {
-        setIsClaiming(true);
-        setMintPrice(getMintPrice(isWhitelisted));
-        let _price = ethers.utils.parseUnits(
-          String(mintPrice * mintQuantity),
-          18
-        );
+      setIsClaiming(true);
+      setMintPrice(getMintPrice(isWhitelisted));
+      let _price = ethers.utils.parseUnits(
+        String(mintPrice * mintQuantity),
+        18
+      );
 
-        const claimPromise = new Promise((resolve, reject) => {
-          contract
-            .claim(mintQuantity, {
-              value: _price,
-            })
-            .then((receipt) => {
-              console.log(receipt);
-              setIsClaiming(false);
-              loadData();
+      const claimPromise = new Promise((resolve, reject) => {
+        contract
+          .claim(mintQuantity, {
+            value: _price,
+          })
+          .then((receipt) => {
+            console.log(receipt);
+            setIsClaiming(false);
+            loadData();
 
-              const link = `https://ftmscan.com/tx/${receipt.transactionHash}`;
+            const link = `https://ftmscan.com/tx/${receipt.transactionHash}`;
 
-              resolve(link);
-            })
-            .catch((err) => {
-              console.log("error", err);
-              toast.error(err.data.message, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: false,
-                theme: "colored",
-              });
+            resolve(link);
+          })
+          .catch((err) => {
+            console.log("error", err);
+            toast.error(err.data.message, {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: false,
+              theme: "colored",
             });
-        });
+          });
+      });
 
-        toast.promise(claimPromise, {
-          pending: "Claiming...",
-          success: {
-            render: (link) => `Claimed!`,
-          },
-          error: "Something went wrong... Try again!",
-        });
-      } else {
-        console.log('deu erro')
-      }
+      toast.promise(claimPromise, {
+        pending: "Claiming...",
+        success: {
+          render: (link) => `Claimed!`,
+        },
+        error: "Something went wrong... Try again!",
+      });
     }
 
   }
