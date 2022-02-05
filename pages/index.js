@@ -13,6 +13,7 @@ import { isAddress } from "ethers/lib/utils";
 
 const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 const MINT_PRICE = Number(process.env.NEXT_PUBLIC_MINT_PRICE);
+const WHITELIST_MINT_PRICE = Number(process.env.NEXT_WHITELIST_MINT_PRICE);
 
 function Index() {
   const { active, activate, deactivate, account, web3 } = useWeb3();
@@ -20,6 +21,7 @@ function Index() {
   const [contract, setContract] = useState(null);
   const [maxMintCount, setMaxMintCount] = useState(0);
   const [supply, setSupply] = useState(0);
+  const [mintPrice, setMintPrice] = useState(0);
   const [isClaiming, setIsClaiming] = useState(false);
 
   const [mintQuantity, setMintQuantity] = useState(0);
@@ -31,6 +33,8 @@ function Index() {
   }, []);
 
   useEffect(() => {
+    setMintPrice(MINT_PRICE);
+
     if (active && web3) {
       let c = new ethers.Contract(
         contractAddress,
@@ -38,6 +42,7 @@ function Index() {
         web3.getSigner(account)
       );
 
+      setMintPrice(MINT_PRICE);
       setContract(c);
       c.totalSupply()
         .then((supply) => {
@@ -63,8 +68,19 @@ function Index() {
           setMaxMintCount(maxMintCount);
         })
         .catch((err) => console.log(err));
-    }
+
+      c.isWhitelisted(account)
+        .then((isWhitelisted) => {
+          setIsWhiteListed(isWhitelisted);
+          setMintPrice(getMintPrice(isWhitelisted));
+        })
+        .catch((err) => console.log(err));
+      }
   }, [active, web3]);
+
+  function getMintPrice(isWhitelisted) {
+    return isWhitelisted ? 2 : 3;
+  }
 
   async function loadData() {
     let totalSupply = await contract.totalSupply();
@@ -78,9 +94,10 @@ function Index() {
       })
       .catch((err) => console.log(err));
     contract
-      .isWhitelisted()
+      .isWhitelisted(account)
       .then((isWhitelisted) => {
         setIsWhiteListed(isWhitelisted);
+        setMintPrice(getMintPrice(isWhitelisted));
       })
       .catch((err) => console.log(err));
   }
@@ -89,11 +106,10 @@ function Index() {
   async function claim() {
     if (account) {
       if (await contract.isWhitelisted(account)) {
-        console.log('ta na whitelist', contract.isWhitelisted(account))
         setIsClaiming(true);
-        const MINT_PRICE = Number(process.env.NEXT_PUBLIC_MINT_PRICE) - 1;
+        setMintPrice(getMintPrice(isWhitelisted));
         let _price = ethers.utils.parseUnits(
-          String(MINT_PRICE * mintQuantity),
+          String(mintPrice * mintQuantity),
           18
         );
 
@@ -244,10 +260,9 @@ function Index() {
                     disabled={mintQuantity === 0}
                     onClick={claim}
                   >
-                    {console.log('isWhitelisted', isWhitelisted)}
                     {isClaiming
                       ? "Claiming..."
-                      : `Claim (${mintQuantity * MINT_PRICE} FTM)`}
+                      : `Claim (${mintQuantity * mintPrice} FTM)`}
                   </button>
                 </div>
               ) : (
@@ -289,7 +304,7 @@ function Index() {
                     disabled={mintQuantity === 0}
                     onClick={claim}
                   >
-                    Claim ${mintQuantity * MINT_PRICE} FTM
+                    Claim ${mintQuantity * mintPrice} FTM
                   </button>
                 </div>
               )}
@@ -319,7 +334,7 @@ function Index() {
                   </svg>
 
                   <div className="flex flex-col">
-                    <span className="font-bold py-2 sm:py-0 text-xl">3 FTM</span>
+                    <span className="font-bold py-2 sm:py-0 text-xl">{mintPrice} FTM</span>
                     <span className="text-sm">Mint price</span>
                   </div>
                 </div>
