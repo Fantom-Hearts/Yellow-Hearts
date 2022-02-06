@@ -58,68 +58,6 @@ function About() {
     }
   }, [active, web3]);
 
-  async function loadData() {
-    let totalSupply = await contract.totalSupply();
-
-    setSupply(totalSupply);
-
-    contract
-      .maxMintCount()
-      .then((maxMintCount) => {
-        setMaxMintCount(maxMintCount);
-      })
-      .catch((err) => console.log(err));
-  }
-
-  function claim() {
-    if (account) {
-      setIsClaiming(true);
-      let _price = ethers.utils.parseUnits(
-        String(MINT_PRICE * mintQuantity),
-        18
-      );
-
-      const claimPromise = new Promise((resolve, reject) => {
-        contract
-          .claim(mintQuantity, {
-            value: _price,
-          })
-          .then((receipt) => {
-            console.log(receipt);
-            setIsClaiming(false);
-            loadData();
-
-            const link = `https://ftmscan.com/tx/${receipt.transactionHash}`;
-
-            resolve(link);
-          })
-          .catch((err) => {
-            console.log("error", err);
-          });
-      });
-
-      toast.promise(claimPromise, {
-        pending: "Claiming...",
-        success: {
-          render: (link) => `Claimed!`,
-        },
-        error: "Something went wrong... Try again!",
-      });
-    }
-  }
-
-  const changeQuantity = (operation) => {
-    if (operation === "add") {
-      if (mintQuantity < maxMintCount) {
-        setMintQuantity(mintQuantity + 1);
-      }
-    } else {
-      if (mintQuantity > 0) {
-        setMintQuantity(mintQuantity - 1);
-      }
-    }
-  };
-
   return (
     <>
       <div className="container mx-auto sm:px-2 md:px-2 lg:px-48 px-48 pt-8">
@@ -150,7 +88,7 @@ function About() {
               <Link href="/hearts">
                 <button className="group flex items-center mr-6 transition-all duration-500 ease-in-out hover:bg-yellow-200 rounded-2xl text-black py-3 px-6 font-bold text-base border-2 border-black leading-6">
                   <svg className="mr-2 stroke-transparent group-hover:stroke-yellow-100" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3.98389 11.6106L9.11798 18.5107C10.5955 20.4964 13.4045 20.4964 14.882 18.5107L20.0161 11.6106C21.328 9.84746 21.328 7.34218 20.0161 5.57906C18.0957 2.9981 13.6571 3.76465 12 6.54855C10.3429 3.76465 5.90428 2.9981 3.9839 5.57906C2.67204 7.34218 2.67203 9.84746 3.98389 11.6106Z" stroke="#1B1B1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M3.98389 11.6106L9.11798 18.5107C10.5955 20.4964 13.4045 20.4964 14.882 18.5107L20.0161 11.6106C21.328 9.84746 21.328 7.34218 20.0161 5.57906C18.0957 2.9981 13.6571 3.76465 12 6.54855C10.3429 3.76465 5.90428 2.9981 3.9839 5.57906C2.67204 7.34218 2.67203 9.84746 3.98389 11.6106Z" stroke="#1B1B1B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   My Hearts
                 </button>
@@ -163,7 +101,7 @@ function About() {
                   : <>
                     <svg className="mr-2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M4.6531 17.0263L3.95839 17.3089L3.95839 17.3089L4.6531 17.0263ZM4.30609 11.3971L5.03006 11.593L4.30609 11.3971ZM19.6939 11.3971L18.9699 11.593L19.6939 11.3971ZM19.3469 17.0263L20.0416 17.3089V17.3089L19.3469 17.0263ZM14.0365 20.8418L13.9206 20.1008L14.0365 20.8418ZM9.96352 20.8418L10.0794 20.1008L9.96352 20.8418ZM8.65619 7.60213L8.50672 6.86718L8.65619 7.60213ZM15.3438 7.60213L15.4933 6.86718L15.4933 6.86718L15.3438 7.60213ZM9.21479 20.7247L9.0989 21.4657L9.21479 20.7247ZM4.74598 17.2546L5.44069 16.972L5.44069 16.972L4.74598 17.2546ZM14.7852 20.7247L14.9011 21.4657L14.7852 20.7247ZM19.254 17.2546L18.5593 16.972V16.972L19.254 17.2546ZM15.6199 7.65829L15.4705 8.39324L15.4705 8.39324L15.6199 7.65829ZM8.38009 7.65829L8.52956 8.39324L8.38009 7.65829ZM6.89397 7.43059C6.89397 7.84481 7.22976 8.18059 7.64397 8.18059C8.05819 8.18059 8.39397 7.84481 8.39397 7.43059H6.89397ZM7.64397 7.12771H6.89397H7.64397ZM16.356 7.12772H15.606H16.356ZM15.606 7.4306C15.606 7.84481 15.9418 8.1806 16.356 8.1806C16.7702 8.1806 17.106 7.84481 17.106 7.4306H15.606ZM10.8517 3.14126L10.6697 2.41368L10.6697 2.41368L10.8517 3.14126ZM13.1482 3.14126L13.3302 2.41368V2.41368L13.1482 3.14126ZM8.52956 8.39324L8.80567 8.33709L8.50672 6.86718L8.23062 6.92333L8.52956 8.39324ZM15.1943 8.33709L15.4705 8.39324L15.7694 6.92333L15.4933 6.86718L15.1943 8.33709ZM14.6693 19.9837L13.9206 20.1008L14.1523 21.5828L14.9011 21.4657L14.6693 19.9837ZM10.0794 20.1008L9.33068 19.9837L9.0989 21.4657L9.84762 21.5828L10.0794 20.1008ZM18.6522 16.7437L18.5593 16.972L19.9487 17.5373L20.0416 17.3089L18.6522 16.7437ZM5.44069 16.972L5.3478 16.7437L3.95839 17.3089L4.05128 17.5373L5.44069 16.972ZM5.34781 16.7437C4.67941 15.1008 4.56858 13.2988 5.03006 11.593L3.58212 11.2013C3.03465 13.2248 3.1667 15.363 3.95839 17.3089L5.34781 16.7437ZM18.9699 11.593C19.4314 13.2987 19.3206 15.1008 18.6522 16.7437L20.0416 17.3089C20.8333 15.363 20.9654 13.2248 20.4179 11.2012L18.9699 11.593ZM13.9206 20.1008C12.6486 20.2997 11.3514 20.2997 10.0794 20.1008L9.84762 21.5828C11.2732 21.8057 12.7268 21.8057 14.1523 21.5828L13.9206 20.1008ZM8.80567 8.33709C10.9118 7.90875 13.0882 7.90875 15.1943 8.33709L15.4933 6.86718C13.1899 6.39872 10.8101 6.39872 8.50672 6.86718L8.80567 8.33709ZM9.33068 19.9837C7.55628 19.7062 6.08366 18.5524 5.44069 16.972L4.05128 17.5373C4.90076 19.6253 6.82633 21.1102 9.0989 21.4657L9.33068 19.9837ZM14.9011 21.4657C17.1736 21.1102 19.0992 19.6253 19.9487 17.5373L18.5593 16.972C17.9163 18.5524 16.4437 19.7062 14.6693 19.9837L14.9011 21.4657ZM15.4705 8.39324C17.1912 8.7432 18.5368 9.99212 18.9699 11.593L20.4179 11.2012C19.8298 9.02766 18.0205 7.38115 15.7694 6.92333L15.4705 8.39324ZM8.23062 6.92333C5.97952 7.38115 4.17018 9.02766 3.58212 11.2013L5.03006 11.593C5.46317 9.99212 6.80883 8.7432 8.52956 8.39324L8.23062 6.92333ZM8.39397 7.43059V7.12771H6.89397V7.43059H8.39397ZM15.606 7.12772V7.4306H17.106V7.12772H15.606ZM11.0337 3.86884C11.6672 3.71039 12.3328 3.71039 12.9662 3.86884L13.3302 2.41368C12.4578 2.19544 11.5422 2.19544 10.6697 2.41368L11.0337 3.86884ZM17.106 7.12772C17.106 4.88982 15.535 2.96519 13.3302 2.41368L12.9662 3.86884C14.5399 4.2625 15.606 5.61508 15.606 7.12772H17.106ZM8.39397 7.12771C8.39397 5.61508 9.46002 4.2625 11.0337 3.86884L10.6697 2.41368C8.46497 2.96519 6.89397 4.88982 6.89397 7.12771H8.39397Z" fill="#1B1B1B" />
-                      <path d="M12 13.5L12 15.5" stroke="#1B1B1B" stroke-width="1.5" stroke-linecap="round" />
+                      <path d="M12 13.5L12 15.5" stroke="#1B1B1B" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
                     Connect
                   </>
@@ -174,136 +112,10 @@ function About() {
         </header>
 
         <section className="pt-8">
-          <p className="font-normal text-sm leading-3 text-indigo-700 hover:text-indigo-800 cursor-pointer pb-2">About</p>
-          <div className="flex lg:flex-row flex-col lg:gap-8 sm:gap-10 gap-12">
-            <div className="w-full lg:w-6/12">
-              <h2 className="w-full font-bold lg:text-4xl text-3xl lg:leading-10 leading-9">We are here to make great design accessible and delightfull for everyone</h2>
-              <p className="font-normal text-base leading-6 text-gray-600 mt-6">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.In the first place we have granted to God, and by this our present charter confirmed for us and our heirs forever that the English Church shall be free, and shall have her rights entire,</p>
-            </div>
-            <div className="w-full lg:w-6/12">
-              <img className="lg:block hidden w-full" src="https://i.ibb.co/RjNH7QB/Rectangle-122-1.png" alt="people discussing on board" />
-              <img className="lg:hidden sm:block hidden w-full" src="https://i.ibb.co/16fPqrg/Rectangle-122-2.png" alt="people discussing on board" />
-              <img className="sm:hidden block w-full" src="https://i.ibb.co/Jxhpxh6/Rectangle-122.png" alt="people discussing on board" />
-            </div>
-          </div>
+          <h1 className="text-xl sm:text-3xl mt-8 text-center font-extrabold text-black mb-4">
+            We are working on this page!
+          </h1>
 
-          <div className="relative mt-24">
-            <div className="grid sm:grid-cols-3 grid-cols-2 sm:gap-8 gap-4">
-              <div className="z-20 w-12 h-12 bg-gray-800 rounded-full flex justify-center items-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 5V21" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M19 5V14" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M5 4.99984C5.93464 4.08371 7.19124 3.57056 8.5 3.57056C9.80876 3.57056 11.0654 4.08371 12 4.99984C12.9346 5.91598 14.1912 6.42913 15.5 6.42913C16.8088 6.42913 18.0654 5.91598 19 4.99984" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M5 14.0001C5.93464 13.084 7.19124 12.5708 8.5 12.5708C9.80876 12.5708 11.0654 13.084 12 14.0001C12.9346 14.9162 14.1912 15.4294 15.5 15.4294C16.8088 15.4294 18.0654 14.9162 19 14.0001" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-
-              <svg className="z-20" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="24" cy="24" r="24" fill="#1F2937" />
-                <path d="M26 15V19C26 19.2652 26.1054 19.5196 26.2929 19.7071C26.4804 19.8946 26.7348 20 27 20H31" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M31 30V31C31 31.5304 30.7893 32.0391 30.4142 32.4142C30.0391 32.7893 29.5304 33 29 33H19C18.4696 33 17.9609 32.7893 17.5858 32.4142C17.2107 32.0391 17 31.5304 17 31V30" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M30 26H33M15 26H18H15ZM22.5 26H25.5H22.5Z" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M17 22V17C17 16.4696 17.2107 15.9609 17.5858 15.5858C17.9609 15.2107 18.4696 15 19 15H26L31 20V22" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-
-              <svg className="z-20 sm:block hidden" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="24" cy="24" r="24" fill="#1F2937" />
-                <path d="M21 23C23.2091 23 25 21.2091 25 19C25 16.7909 23.2091 15 21 15C18.7909 15 17 16.7909 17 19C17 21.2091 18.7909 23 21 23Z" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M15 33V31C15 29.9391 15.4214 28.9217 16.1716 28.1716C16.9217 27.4214 17.9391 27 19 27H23C24.0609 27 25.0783 27.4214 25.8284 28.1716C26.5786 28.9217 27 29.9391 27 31V33" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M28 15.1301C28.8604 15.3504 29.623 15.8508 30.1676 16.5524C30.7122 17.254 31.0078 18.117 31.0078 19.0051C31.0078 19.8933 30.7122 20.7562 30.1676 21.4578C29.623 22.1594 28.8604 22.6598 28 22.8801" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M33 33.0001V31.0001C32.9949 30.1173 32.6979 29.2609 32.1553 28.5645C31.6126 27.8682 30.8548 27.3708 30 27.1501" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </div>
-            <hr className="z-10 absolute top-2/4 w-full bg-gray-200" />
-          </div>
-          <div className="grid sm:grid-cols-3 grid-cols-2 sm:gap-8 gap-4">
-            <div>
-              <p className="font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 text-gray-800 mt-6">Founded</p>
-              <p className="font-normal text-base leading-6 text-gray-600 mt-6">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-            </div>
-            <div>
-              <p className="font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 text-gray-800 mt-6">50M montly enrichments</p>
-              <p className="font-normal text-base leading-6 text-gray-600 mt-6">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-            </div>
-            <div className="sm:block hidden">
-              <p className="font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 text-gray-800 mt-6">400k User</p>
-              <p className="font-normal text-base leading-6 text-gray-600 mt-6">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-            </div>
-          </div>
-          <div className="sm:hidden block relative mt-8">
-            <div className="grid sm:grid-cols-3 grid-cols-2 sm:gap-8 gap-4">
-              <svg className="z-20" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="24" cy="24" r="24" fill="#1F2937" />
-                <path d="M21 23C23.2091 23 25 21.2091 25 19C25 16.7909 23.2091 15 21 15C18.7909 15 17 16.7909 17 19C17 21.2091 18.7909 23 21 23Z" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M15 33V31C15 29.9391 15.4214 28.9217 16.1716 28.1716C16.9217 27.4214 17.9391 27 19 27H23C24.0609 27 25.0783 27.4214 25.8284 28.1716C26.5786 28.9217 27 29.9391 27 31V33" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M28 15.1301C28.8604 15.3504 29.623 15.8508 30.1676 16.5524C30.7122 17.254 31.0078 18.117 31.0078 19.0051C31.0078 19.8933 30.7122 20.7562 30.1676 21.4578C29.623 22.1594 28.8604 22.6598 28 22.8801" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M33 33.0001V31.0001C32.9949 30.1173 32.6979 29.2609 32.1553 28.5645C31.6126 27.8682 30.8548 27.3708 30 27.1501" stroke="white" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </div>
-            <hr className="z-10 absolute top-2/4 w-full bg-gray-200" />
-          </div>
-          <div className="sm:hidden grid sm:grid-cols-3 grid-cols-2 sm:gap-8 gap-4">
-            <div>
-              <p className="font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 text-gray-800 mt-6">400k User</p>
-              <p className="font-normal text-base leading-6 text-gray-600 mt-6">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-            </div>
-          </div>
-
-          <div className="flex lg:flex-row flex-col md:gap-14 gap-16 justify-between lg:mt-20 mt-16">
-            <div className="w-full lg:w-6/12">
-              <h2 className="font-bold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800">Our Mission</h2>
-              <p className="font-normal text-base leading-6 text-gray-600 mt-6 w-full lg:w-10/12 xl:w-9/12">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.In the first place we have granted to God, and by this our present charter confirmed for us and our heirs forever that the English Church shall be free, and shall have her rights entire, and her liberties inviolate; and we will that it be thus observed; which is apparent from</p>
-              <p className="font-normal text-base leading-6 text-gray-600 w-full lg:w-10/12 xl:w-9/12 mt-10">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.In the first place we have granted to God, and by this our present charter confirmed for us and our heirs forever that the English Church shall be free, and shall have her rights entire, and her liberties inviolate; and we will that it be thus observed; which is apparent from</p>
-            </div>
-            <div className="w-full lg:w-6/12">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 lg:gap-12 gap-10">
-                {/* <!-- Team Card --> */}
-                <div className="flex p-4 shadow-md">
-                  <div className="mr-6">
-                    <svg className="mr-6" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M18 15C20.4853 15 22.5 12.9853 22.5 10.5C22.5 8.01472 20.4853 6 18 6C15.5147 6 13.5 8.01472 13.5 10.5C13.5 12.9853 15.5147 15 18 15Z" stroke="#1F2937" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M25.5 28.5C27.9853 28.5 30 26.4853 30 24C30 21.5147 27.9853 19.5 25.5 19.5C23.0147 19.5 21 21.5147 21 24C21 26.4853 23.0147 28.5 25.5 28.5Z" stroke="#1F2937" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M10.5 28.5C12.9853 28.5 15 26.4853 15 24C15 21.5147 12.9853 19.5 10.5 19.5C8.01472 19.5 6 21.5147 6 24C6 26.4853 8.01472 28.5 10.5 28.5Z" stroke="#1F2937" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <div className="">
-                    <p className="font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 text-gray-800">Team</p>
-                    <p className="mt-2 font-normal text-base leading-6 text-gray-600">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                  </div>
-                </div>
-
-                {/* <!-- Board Card --> */}
-                <div className="flex p-4 shadow-md">
-                  <div className="mr-6">
-                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M10.5 10.5C12.1569 10.5 13.5 9.15685 13.5 7.5C13.5 5.84315 12.1569 4.5 10.5 4.5C8.84315 4.5 7.5 5.84315 7.5 7.5C7.5 9.15685 8.84315 10.5 10.5 10.5Z" stroke="#1F2937" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M7.5 33V25.5L6 24V18C6 17.6022 6.15804 17.2206 6.43934 16.9393C6.72064 16.658 7.10218 16.5 7.5 16.5H13.5C13.8978 16.5 14.2794 16.658 14.5607 16.9393C14.842 17.2206 15 17.6022 15 18V24L13.5 25.5V33" stroke="#1F2937" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M25.5 10.5C27.1569 10.5 28.5 9.15685 28.5 7.5C28.5 5.84315 27.1569 4.5 25.5 4.5C23.8431 4.5 22.5 5.84315 22.5 7.5C22.5 9.15685 23.8431 10.5 25.5 10.5Z" stroke="#1F2937" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M22.5 33V27H19.5L22.5 18C22.5 17.6022 22.658 17.2206 22.9393 16.9393C23.2206 16.658 23.6022 16.5 24 16.5H27C27.3978 16.5 27.7794 16.658 28.0607 16.9393C28.342 17.2206 28.5 17.6022 28.5 18L31.5 27H28.5V33" stroke="#1F2937" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <div className="">
-                    <p className="font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 text-gray-800">Board</p>
-                    <p className="mt-2 font-normal text-base leading-6 text-gray-600">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                  </div>
-                </div>
-
-                {/* <!-- Press Card --> */}
-                <div className="flex p-4 shadow-md">
-                  <div className="mr-6">
-                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M28.5 7.5H7.5C5.84315 7.5 4.5 8.84315 4.5 10.5V25.5C4.5 27.1569 5.84315 28.5 7.5 28.5H28.5C30.1569 28.5 31.5 27.1569 31.5 25.5V10.5C31.5 8.84315 30.1569 7.5 28.5 7.5Z" stroke="#1F2937" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M4.5 10.5L18 19.5L31.5 10.5" stroke="#1F2937" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <div className="">
-                    <p className="font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 text-gray-800">Press</p>
-                    <p className="mt-2 font-normal text-base leading-6 text-gray-600">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
       </div>
     </>

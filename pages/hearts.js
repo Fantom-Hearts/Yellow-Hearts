@@ -146,7 +146,7 @@ export default function HeartsPage() {
           </div>
           {heartSelected != null && (
             <div
-              className="bg-semitransparent w-full h-screen absolute top-0 left-0 right-0 flex items-center justify-center"
+              className="bg-semitransparent backdrop-blur-xl w-full h-screen absolute top-0 left-0 right-0 flex items-center justify-center"
               onClick={() => setheartSelected(null)}
             >
               <div
