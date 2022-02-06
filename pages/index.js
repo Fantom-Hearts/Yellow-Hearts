@@ -377,6 +377,15 @@ function Index() {
           </div>
 
         </section>
+
+        <footer className="flex flex-col w-full items-center justify-center my-8">
+          <p className="text-xs text-center w-9/12">
+            Please make sure you are connected to the right network (Fantom Opera Mainnet) and the correct address.
+            <br />Please note: Once you make the purchase, you cannot undo this action.
+          </p>
+          <p className="text-xs text-center w-9/12 mb-8"> We have set the gas limit to 285000 for the contract to successfully mint your NFT. We recommend that you don't lower the gas limit.</p>
+
+        </footer>
       </div>
     </>
 
