@@ -14,7 +14,7 @@ contract YellowHearts is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     Counters.Counter private _counter;
 
-    string private _defaultBaseURI = "https://gateway.pinata.cloud/ipfs/QmSgwcBcWPMUQxjYu9UGQj1cZ9J6pN7ZTfmPSGJ6J6XYEJ/";
+    string private _defaultBaseURI;
 
     address payable public payableAddress = payable(0x3e269293485c3a4A8443Dc5d89a913062db3982A);
 
