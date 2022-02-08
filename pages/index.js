@@ -169,7 +169,7 @@ function Index() {
     <>
       <div className="pt-8 px-5 sm:max-w-5xl mx-auto sm:h-screen">
         <header>
-          <div className="flex-col flex  sm:flex-col md:flex-col lg:flex-row items-start lg:items-center justify-between">
+          <div className="flex-col flex sm:flex-col md:flex-col lg:flex-row items-start lg:items-center justify-between">
 
             <div className="logo cursor-pointer">
               <Link href="/">
@@ -221,7 +221,7 @@ function Index() {
         <section>
           {/* <div className="container mx-auto flex flex-row justify-between pt-8 gap-4"> */}
           {/* <div className="container mx-auto grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-8 gap-4"> */}
-          <div className="container mx-auto grid grid-cols-3 grid-rows-1 pt-8 gap-4">
+          <div className="container mx-auto lg:grid grid-cols-3 grid-rows-1 sm:flex pt-8 gap-4">
             <div className="row-span-2 col-span-0">
               <h1 className="text-4xl font-black leading-[3rem]">We are sharing<br />
                 💛 Hearts</h1>
