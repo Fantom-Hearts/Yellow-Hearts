@@ -111,10 +111,30 @@ function About() {
           </div>
         </header>
 
-        <section className="pt-8">
-          <h1 className="text-xl sm:text-3xl mt-8 text-center font-extrabold text-black mb-4">
-            We are working on this page!
-          </h1>
+        <section className="flex flex-col items-center justify-center mb-16">
+          <h1 className="text-xl sm:text-3xl mt-8 font-extrabold text-black mb-4">💛 About Us</h1>
+
+          <div className="pt-12 w-4/5 text-justify">
+            <p className="mb-4">
+              Fantom Hearts is a project that was initially created by two friends, in a search for knowledge related to blockchain, cryptocurrencies, smart contracts and more! For this we created our community, where we can interact internally and externally, with other people and communities.
+            </p>
+            <p className="mb-4">
+              One of the ways of interaction between individuals and/or communities is through dissemination and support, for that we launched the Yellow Hearts #NFT collection with 1000 unique hearts on the Fantom network, this being the first of other collections 💕, where the purchase of a Yellow Heart is a way of supporting the project and the community itself, allowing us a way to return this support to you, whether through giveaways or acquiring NFTs to support another project, being able to donate these back to the community, thus creating a network of interaction between the entire web3's ecosystem.
+              In addition to supporting the web3 community, we also want to pass on the meaning of a Heart to other people (love, union, care, life), so we will donate 25% of the sales proceeds to an NGO (for each collection a different ngo).
+            </p>
+            <p className="mb-4">
+              Since the beginning of the pandemic, there has been a 31% growth in people living on the streets of São Paulo. This number, unfortunately, is often incorrect and much higher than that recorded by the government.
+              Pensando nisso, a ONG escolhida para receber essa doação da coleção Yellow Hearts foi a Grupo do Panetone, uma ONG situada na cidade de São Paulo, Brasil, que leva cestas básicas, kits de higiene e água para comunidades carentes e pessoas em situação de rua.
+            </p>
+            <p className="mb-4">
+              I, Vitagliano, know the work of the Grupo do Panetone and I know that this donation will be of great help to those who need it most.
+              By acquiring and holding a Yellow Heart, you become a Heart Keeper and have greater power over future community decisions. You can also receive NFT of the new collections for free and various airdrops (ours and partners).
+            </p>
+            <p className="mb-4">
+              Other project information can be seen in our roadmap (these can be changed as decisions are made together with the community), we are 100% open to community suggestions, always thinking about the improvement for it and all the steps taken by us (Vitagliano and Kinash) are and will be reported through social media and Discord annoucements.
+            </p>
+          </div>
+
 
         </section>
       </div>
