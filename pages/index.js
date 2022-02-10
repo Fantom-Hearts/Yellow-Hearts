@@ -79,7 +79,7 @@ function Index() {
   }, [active, web3]);
 
   function getMintPrice(isWhitelisted) {
-    return isWhitelisted ? 2 : 3;
+    return isWhitelisted ? 3 : 3;
   }
 
   async function loadData() {
