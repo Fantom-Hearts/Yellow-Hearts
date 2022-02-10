@@ -124,7 +124,7 @@ function About() {
             </p>
             <p className="mb-4">
               Since the beginning of the pandemic, there has been a 31% growth in people living on the streets of São Paulo. This number, unfortunately, is often incorrect and much higher than that recorded by the government.
-              Pensando nisso, a ONG escolhida para receber essa doação da coleção Yellow Hearts foi a Grupo do Panetone, uma ONG situada na cidade de São Paulo, Brasil, que leva cestas básicas, kits de higiene e água para comunidades carentes e pessoas em situação de rua.
+              With that in mind, the NGO chosen to receive this donation from the Yellow Hearts collection was Grupo do Panetone, an NGO located in the city of São Paulo, Brazil, which takes basic food baskets, hygiene kits and water to needy communities and homeless people.
             </p>
             <p className="mb-4">
               I, Vitagliano, know the work of the Grupo do Panetone and I know that this donation will be of great help to those who need it most.
