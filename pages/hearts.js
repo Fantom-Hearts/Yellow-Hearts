@@ -138,7 +138,7 @@ export default function HeartsPage() {
                       <img
                         src={heart.image.replace(
                           "ipfs://",
-                          "https://gateway.pinata.cloud/ipfs/"
+                          "https://cloudflare-ipfs.com/ipfs/"
                         )}
                         alt={heart.name}
                         className="w-60 h-60 rounded-xl mb-6"
@@ -162,7 +162,7 @@ export default function HeartsPage() {
                 <img
                   src={heartSelected.image.replace(
                     "ipfs://",
-                    "https://gateway.pinata.cloud/ipfs/"
+                    "https://cloudflare-ipfs.com/ipfs/"
                   )}
                   alt={heartSelected.name}
                   className="w-96 h-96 mx-auto rounded-xl"
