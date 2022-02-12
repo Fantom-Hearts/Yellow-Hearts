@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 import { toast } from "react-toastify";
@@ -8,8 +7,6 @@ import YellowHeartsAbi from "../contract/abis/YellowHearts.json";
 
 import useWeb3 from "../hooks/useWeb3";
 import { ethers } from "ethers";
-import Button from "../components/Button";
-import { isAddress } from "ethers/lib/utils";
 
 const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 const MINT_PRICE = Number(process.env.NEXT_PUBLIC_MINT_PRICE);
@@ -29,7 +26,11 @@ function Index() {
   const [isWhitelisted, setIsWhiteListed] = useState(false);
 
   useEffect(() => {
-    activate();
+    if (window.ethereum) {
+      activate();
+    } else {
+      return;
+    }
   }, []);
 
   useEffect(() => {

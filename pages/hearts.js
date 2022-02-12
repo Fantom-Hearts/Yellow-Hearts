@@ -28,14 +28,12 @@ export default function HeartsPage() {
         getUserHearts()
           .then((hearts) => {
             if (hearts) {
-              console.log('hearts', hearts)
               Promise.all(
                 hearts.map((heart) =>
                   getHeartMetadata(ethers.utils.formatUnits(heart, 0))
                 )
               )
                 .then((metadatas) => {
-                  console.log("metadatas", metadatas);
                   setuserHearts(metadatas);
                   resolve();
                 })
@@ -132,8 +130,9 @@ export default function HeartsPage() {
             <ul className="grid grid-cols-1 sm:grid-cols-4 gap-4">
               {userHearts.map((heart) => {
                 if (!heart) return null;
+                console.log('coração', heart)
                 return (
-                  <li className="flex flex-col items-center justify-center">
+                  <li key={heart.name} className="flex flex-col items-center justify-center">
                     <button type="button" onClick={() => openHeartDetails(heart)}>
                       <img
                         src={heart.image.replace(

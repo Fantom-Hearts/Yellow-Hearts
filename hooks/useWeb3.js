@@ -3,6 +3,8 @@ import { InjectedConnector } from "@web3-react/injected-connector";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 
+import { toast } from "react-toastify";
+
 const injector = new InjectedConnector({
   supportedChainIds: [Number(process.env.NEXT_PUBLIC_CHAIN_ID)],
 });
@@ -26,7 +28,19 @@ const useWeb3 = () => {
   };
 
   useEffect(() => {
-    setWeb3(new ethers.providers.Web3Provider(window.ethereum, "any"));
+    if (window.ethereum) {
+      setWeb3(new ethers.providers.Web3Provider(window.ethereum, "any"));
+    } else {
+      toast.error("Please install MetaMask", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        theme: "colored",
+      });
+    }
   }, []);
 
   return {
