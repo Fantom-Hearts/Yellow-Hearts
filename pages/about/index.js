@@ -60,8 +60,8 @@ function About() {
 
   return (
     <>
-      <div className="container mx-auto sm:px-2 md:px-2 lg:px-48 px-48 pt-8">
-      <Popover>
+      <div className="px-6 sm:max-w-5xl mx-auto">
+        <Popover>
           <nav>
             <div className="flex justify-between items-center py-6 md:justify-between md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -204,6 +204,9 @@ function About() {
             </Popover.Panel>
           </Transition>
         </Popover>
+      </div>
+
+      <div className="">
 
         <section className="flex flex-col items-center justify-center mb-16">
           <h1 className="text-xl sm:text-3xl mt-8 font-extrabold text-black mb-4">💛 About Us</h1>
