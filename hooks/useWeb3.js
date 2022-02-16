@@ -32,7 +32,6 @@ const useWeb3 = () => {
       setWeb3(new ethers.providers.Web3Provider(window.ethereum, "any"));
     } else {
       toast.error("Please install MetaMask", {
-        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,

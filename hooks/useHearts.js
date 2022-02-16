@@ -30,14 +30,13 @@ const useHearts = (web3, account) => {
         tokens.push(token);
         index++;
       }
-      console.log('owner', owner)
-      console.log('balance', balance)
+
       return tokens;
     }
   };
 
   const getHeartMetadata = async (heartId) => {
-    const response = await fetch(`/api/hearts/${heartId}.json`);
+    const response = await fetch(`localhost:3000/api/hearts/${heartId}.json`);
     if (response.status === 200) {
       let data = await response.json();
       data = {
