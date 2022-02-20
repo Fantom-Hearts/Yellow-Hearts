@@ -6,34 +6,52 @@ const Slides = () => {
     const settings = {
         dots: false,
         infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesToShow: 6,
+        slidesToScroll: 3,
         autoplay: true,
-        speed: 2000,
-        autoplaySpeed: 2000,
+        speed: 3000,
+        autoplaySpeed: 3000,
         cssEase: "linear"
     };
 
     return (
-        <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4">
+        <div className="mt-12 mx-auto mb-8 overflow-hidden">
             <Slider {...settings}>
                 <div>
-                    <h3>1</h3>
+                    <img src="/assets/heart1.png" alt />
                 </div>
                 <div>
-                    <h3>2</h3>
+                    <img src="/assets/heart2.png" alt />
                 </div>
                 <div>
-                    <h3>3</h3>
+                    <img src="/assets/heart3.png" alt />
                 </div>
                 <div>
-                    <h3>4</h3>
+                    <img src="/assets/heart4.png" alt />
                 </div>
                 <div>
-                    <h3>5</h3>
+                    <img src="/assets/heart5.png" alt />
                 </div>
                 <div>
-                    <h3>6</h3>
+                    <img src="/assets/heart6.png" alt />
+                </div>
+                <div>
+                    <img src="/assets/heart1.png" alt />
+                </div>
+                <div>
+                    <img src="/assets/heart2.png" alt />
+                </div>
+                <div>
+                    <img src="/assets/heart3.png" alt />
+                </div>
+                <div>
+                    <img src="/assets/heart4.png" alt />
+                </div>
+                <div>
+                    <img src="/assets/heart5.png" alt />
+                </div>
+                <div>
+                    <img src="/assets/heart6.png" alt />
                 </div>
             </Slider>
         </div>
