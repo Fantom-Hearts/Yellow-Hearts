@@ -93,16 +93,16 @@ function Partners() {
 
 
         <div className="container mx-auto pt-16">
-            <div className="w-11/12 xl:w-2/3 lg:w-2/3 md:w-2/3 mx-auto sm:mb-10 mb-16">
-                <h1 className=" xl:text-5xl md:text-3xl text-xl text-center text-black-800 font-extrabold mb-5 pt-4">Friends of Heart</h1>
+            <div className="">
+                <h1 className="text-3xl lg:text-4xl font-bold leading-9 text-black pb-8 text-center">Friends of Heart</h1>
                 <p className="font-normal text-base leading-6 text-black mb-4 text-center">Meet our friends and partners below, without the support and exchange of knowledge with and among them our project would not work</p>
             </div>
-            <div className="flex items-center justify-center mt-10 w-11/12 xl:w-2/3 lg:w-2/3 md:w-2/3 mx-auto sm:mb-10 mb-16">
-                <div className="grid overflow-hidden grid-cols-3 grid-rows-2 gap-2 gap-x-1 gap-y-1 w-full">
+            <div className="flex items-center justify-center mt-10 mx-auto sm:mb-10 mb-16">
+                <div className="grid overflow-hidden lg:grid-cols-3 lg:grid-rows-4 gap-2 lg:grid-flow-row">
 
                     {partnersList.map((partner, index) => (
                         <div key={index} className="w-full flex items-center justify-center">
-                            <div className="w-full px-5 py-1">
+                            <div className="w-full ">
                                 <div className="w-full flex justify-center items-center flex-col rounded-md">
                                     <div className="bg-grey-100 rounded-md">
                                         <div style={{ "background-image": `url('` + partner.image + `');` }} className="w-72 h-72 relative bg-cover flex justify-center flex-col rounded-md ">
